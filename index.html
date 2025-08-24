@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>متجر الطاقة الشمسية</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #009688, #4CAF50);
+      margin: 0;
+      padding: 0;
+      color: white;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.3);
+    }
+    h1 { margin: 0; }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .product {
+      background: white;
+      color: black;
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .product:hover { transform: scale(1.05); }
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .product h3 { margin: 10px 0; }
+    .price { color: green; font-weight: bold; margin: 5px 0; }
+    button {
+      background: #009688;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover { background: #00796B; }
+    .cart, .order-form {
+      background: rgba(255,255,255,0.9);
+      color: black;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .whatsapp {
+      display: block;
+      text-align: center;
+      background: #25D366;
+      color: white;
+      padding: 12px;
+      border-radius: 12px;
+      margin: 20px auto;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌞 متجر الطاقة الشمسية</h1>
+    <p>أفضل الألواح والكشافات بأسعار مناسبة</p>
+  </header>
+
+  <section class="products">
+    <div class="product">
+      <img src="https://ibb.co/05nGFzZ/download" alt="لوح طاقة شمسية 60 واط">
+      <h3>لوح طاقة شمسية 60 واط</h3>
+      <p class="price">299 درهم</p>
+      <button onclick="addToCart('لوح طاقة شمسية 60 واط', '299')">أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/Gvxh0nrG/download" alt="لوح طاقة شمسية 80 واط">
+      <h3>لوح طاقة شمسية 80 واط</h3>
+      <p class="price">399 درهم</p>
+      <button onclick="addToCart('لوح طاقة شمسية 80 واط', '399')">أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/rKjS0fwc/download" alt="لوح طاقة شمسية 100 واط">
+      <h3>لوح طاقة شمسية 100 واط</h3>
+      <p class="price">499 درهم</p>
+      <button onclick="addToCart('لوح طاقة شمسية 100 واط', '499')">أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/GvsfR7Lb/download" alt="كشاف 500 لومن">
+      <h3>كشاف 500 لومن</h3>
+      <p class="price">299 درهم</p>
+      <button onclick="addToCart('كشاف 500 لومن', '299')">أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/39vYGW8X/download" alt="كشاف 600 لومن">
+      <h3>كشاف 600 لومن</h3>
+      <p class="price">349 درهم</p>
+      <button onclick="addToCart('كشاف 600 لومن', '349')">أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/W4QBQd9K/download" alt="كشاف 700 لومن">
+      <h3>كشاف 700 لومن</h3>
+      <p class="price">399 درهم</p>
+      <button onclick="addToCart('كشاف 700 لومن', '399')">أضف إلى السلة</button>
+    </div>
+  </section>
+
+  <div class="cart">
+    <h2>🛒 السلة</h2>
+    <ul id="cart-list"></ul>
+  </div>
+
+  <div class="order-form">
+    <h2>📦 إتمام الطلب</h2>
+    <form id="orderForm">
+      <input type="text" placeholder="اسمك الكامل" required>
+      <input type="email" placeholder="البريد الإلكتروني" required>
+      <input type="text" placeholder="رقم الهاتف" required>
+      <textarea placeholder="العنوان الكامل" required></textarea>
+      <button type="submit">إرسال الطلب</button>
+    </form>
+  </div>
+
+  <a class="whatsapp" href="https://wa.me/212607072825" target="_blank">📲 تواصل عبر واتساب</a>
+
+  <script>
+    const cartList = document.getElementById("cart-list");
+    function addToCart(name, price) {
+      const li = document.createElement("li");
+      li.textContent = `${name} - ${price} درهم`;
+      cartList.appendChild(li);
+    }
+  </script>
+</body>
+</html>
