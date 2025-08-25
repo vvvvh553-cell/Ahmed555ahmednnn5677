@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر الطاقة الشمسية</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom right, #00695c, #0277bd);
+      color: #fff;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .product h3 {
+      margin: 10px 0 5px;
+    }
+    .product p {
+      margin: 5px 0;
+    }
+    .product button {
+      background: #ffca28;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .product button:hover {
+      background: #ffc107;
+    }
+    .contact {
+      background: rgba(0,0,0,0.2);
+      padding: 20px;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    input, textarea {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+    }
+    .whatsapp {
+      display: inline-block;
+      margin-top: 15px;
+      background: #25d366;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌞 متجر الطاقة الشمسية 🌞</h1>
+    <p>أفضل الألواح والكشافات بأسعار مناسبة</p>
+  </header>
+
+  <section class="products">
+    <div class="product">
+      <img src="https://ibb.co/05nGFzZ" alt="لوح شمسي 60 واط">
+      <h3>لوح شمسي 60 واط</h3>
+      <p>السعر: 299 درهم</p>
+      <button>أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/Gvxh0nrG" alt="لوح شمسي 80 واط">
+      <h3>لوح شمسي 80 واط</h3>
+      <p>السعر: 299 درهم</p>
+      <button>أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/rKjS0fwc" alt="لوح شمسي 100 واط">
+      <h3>لوح شمسي 100 واط</h3>
+      <p>السعر: 299 درهم</p>
+      <button>أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/GvsfR7Lb" alt="كشاف 500">
+      <h3>كشاف شمسي 500</h3>
+      <p>السعر: 299 درهم</p>
+      <button>أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/39vYGW8X" alt="كشاف 600">
+      <h3>كشاف شمسي 600</h3>
+      <p>السعر: 299 درهم</p>
+      <button>أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/W4QBQd9K" alt="كشاف 700">
+      <h3>كشاف شمسي 700</h3>
+      <p>السعر: 299 درهم</p>
+      <button>أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/YTDJf03B" alt="بطارية">
+      <h3>بطارية شمسية</h3>
+      <p>السعر: 299 درهم</p>
+      <button>أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/MxsZP389" alt="منظم طاقة">
+      <h3>منظم طاقة</h3>
+      <p>السعر: 299 درهم</p>
+      <button>أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="https://ibb.co/nN4B93DJ" alt="كابل شمسي">
+      <h3>كابل شمسي</h3>
+      <p>السعر: 299 درهم</p>
+      <button>أضف إلى السلة</button>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>📩 تواصل معنا</h2>
+    <form>
+      <input type="text" placeholder="اسمك الكامل" required>
+      <input type="email" placeholder="بريدك الإلكتروني" required>
+      <input type="text" placeholder="مكانك (المدينة)" required>
+      <textarea placeholder="رسالتك"></textarea>
+      <button type="submit">إرسال</button>
+    </form>
+    <a class="whatsapp" href="https://wa.me/212607072825" target="_blank">💬 تواصل عبر واتساب</a>
+  </section>
+
+  <footer>
+    <p>جميع الحقوق محفوظة © 2025 | متجر الطاقة الشمسية</p>
+  </footer>
+</body>
+</html>
