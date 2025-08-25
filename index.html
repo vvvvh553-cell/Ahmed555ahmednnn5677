@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر HASSOU Sahara - الإصدار 2.1 (التصميم الصحيح + القائمة)</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/vvvvh553-cell/assets/main/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #D97706; /* Warm Orange */
+            --secondary-color: #556B2F; /* Olive Green */
+            --text-color: #44403C; /* Dark Brown */
+            --bg-color: #FDFBF7; /* Light Sand */
+            --white-color: #ffffff;
+            --border-color: #e5e2d9;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        body {
+            font-family: 'Almarai', sans-serif; direction: rtl;
+            background-color: var(--bg-color); margin: 0;
+            color: var(--text-color); padding-top: 40px; padding-bottom: 80px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background-color: var(--secondary-color); color: var(--white-color);
+            padding: 10px 0; text-align: center; font-weight: bold;
+            position: fixed; top: 0; width: 100%; z-index: 1001;
+            overflow: hidden; white-space: nowrap;
+        }
+        .announcement-bar p { margin: 0; display: inline-block; animation: marquee 15s linear infinite; }
+
+        /* Header */
+        .main-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 0; border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+        }
+        .header-icons i, .menu-icon i { font-size: 1.5rem; margin: 0 10px; color: var(--text-color); cursor: pointer; }
+        .logo-container { flex-grow: 1; text-align: center; }
+        .logo { width: 120px; height: auto; }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 15px; padding: 20px 0;
+        }
+        .product-card {
+            background-color: var(--white-color); border-radius: 15px;
+            border: 1px solid var(--border-color); overflow: hidden;
+            text-align: center; padding: 10px; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.07); }
+        .product-card .product-image img { width: 100%; height: 150px; object-fit: contain; border-radius: 10px; }
+        .product-card .product-title { font-size: 1rem; font-weight: 700; margin: 10px 0 5px; min-height: 40px; }
+        .product-card .product-price { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }
+        .product-card .buy-button {
+            display: block; width: 100%; padding: 8px; margin-top: 10px;
+            border: 1px solid var(--secondary-color); color: var(--secondary-color);
+            background-color: var(--white-color); border-radius: 20px;
+            font-weight: bold; cursor: pointer;
+        }
+
+        /* Sticky Footer */
+        .sticky-footer {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: var(--white-color); box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            padding: 10px 15px; display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+        }
+        .quantity-control { display: flex; align-items: center; }
+        .quantity-btn { width: 40px; height: 45px; border: 1px solid #ccc; background-color: #f0f0f0; font-size: 1.5rem; cursor: pointer; }
+        #quantity-display { width: 50px; height: 45px; border: 1px solid #ccc; border-left: none; border-right: none; text-align: center; font-size: 1.2rem; font-weight: bold; box-sizing: border-box; }
+        .order-now-btn { background-color: var(--primary-color); color: white; border: none; border-radius: 8px; padding: 0 20px; height: 45px; font-size: 1rem; font-weight: bold; flex-grow: 1; margin-right: 15px; cursor: pointer; }
+
+        /* --- NEW: Side Menu Styles --- */
+        .side-menu {
+            position: fixed; top: 0; right: -300px; /* Start off-screen */
+            width: 300px; height: 100%; background-color: var(--white-color);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 1002;
+            transition: right 0.4s ease; padding: 20px; box-sizing: border-box;
+        }
+        .side-menu.open { right: 0; }
+        .side-menu .logo-area { text-align: center; margin-bottom: 30px; }
+        .side-menu .logo-area img { width: 120px; }
+        .side-menu .search-box { position: relative; margin-bottom: 20px; }
+        .side-menu .search-box input { width: 100%; padding: 10px 40px 10px 10px; border: 1px solid #ccc; border-radius: 25px; box-sizing: border-box; }
+        .side-menu .search-box i { position: absolute; top: 50%; right: 15px; transform: translateY(-50%); color: #999; }
+        .side-menu .menu-links { list-style: none; padding: 0; margin: 0; }
+        .side-menu .menu-links li { padding: 15px 10px; border-bottom: 1px solid var(--border-color); }
+        .side-menu .menu-links a { text-decoration: none; color: var(--text-color); font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        
+        .overlay {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);
+            z-index: 1001;
+        }
+        .overlay.show { display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar">
+        <p>✨ عرض خاص: توصيل مجاني لجميع الطلبات! ✨</p>
+    </div>
+
+    <div class="container">
+        <header class="main-header">
+            <div class="menu-icon" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="logo-container"><img src="https://raw.githubusercontent.com/vvvvh553-cell/assets/main/logo-dark.png" alt="Logo" class="logo"></div>
+            <div class="header-icons">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+        </header>
+        <main>
+            <div class="products-grid">
+                <!-- All 8 products -->
+                <div class="product-card">
+                    <div class="product-image"><img src="https://i.ibb.co/0Vq2FG35/IMG-20250824-130404.jpg" alt="مصباح يدوي"></div>
+                    <h3 class="product-title">مصباح يدوي قوي 🔦</h3>
+                    <p class="product-price">299 MAD</p>
+                    <button class="buy-button">شراء الآن</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="https://i.ibb.co/XrW7Xbkn/IMG-20250824-130200.jpg" alt="محول طاقة"></div>
+                    <h3 class="product-title">محول طاقة (Inverter) ⚡</h3>
+                    <p class="product-price">299 MAD</p>
+                    <button class="buy-button">شراء الآن</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="https://i.ibb.co/b5ZShfJF/IMG-20250824-130243.jpg" alt="محول طاقة شمسي"></div>
+                    <h3 class="product-title">محول طاقة شمسي 2000 واط ☀️</h3>
+                    <p class="product-price">399 MAD</p>
+                    <button class="buy-button">شراء الآن</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="https://i.ibb.co/BVn6VnFR/IMG-20250824-130438.jpg" alt="مروحة مزدوجة"></div>
+                    <h3 class="product-title">مروحة سيارة مزدوجة 🌬️</h3>
+                    <p class="product-price">299 MAD</p>
+                    <button class="buy-button">شراء الآن</button>
+                </div>
+                <!-- Add other products if needed -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Side Menu (Hidden by default) -->
+    <div class="overlay" id="overlay"></div>
+    <div class="side-menu" id="side-menu">
+        <div class="logo-area">
+            <img src="https://raw.githubusercontent.com/vvvvh553-cell/assets/main/logo-dark.png" alt="Logo">
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="البحث عن منتج">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <ul class="menu-links">
+            <li><a href="#">الصفحة الرئيسية <i class="fa-solid fa-chevron-left"></i></a></li>
+            <li><a href="#">التصنيفات <i class="fa-solid fa-chevron-left"></i></a></li>
+            <li><a href="#">اتصل بنا <i class="fa-solid fa-chevron-left"></i></a></li>
+        </ul>
+    </div>
+
+    <!-- Sticky Footer -->
+    <footer class="sticky-footer">
+        <button class="order-now-btn">اطلب الآن</button>
+        <div class="quantity-control">
+            <button class="quantity-btn" id="increase-qty">+</button>
+            <input type="text" id="quantity-display" value="1" readonly>
+            <button class="quantity-btn" id="decrease-qty">-</button>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('overlay');
+
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('show');
+        }
+
+        menuToggle.addEventListener('click', () => {
+            sideMenu.classList.add('open');
+            overlay.classList.add('show');
+        });
+
+        overlay.addEventListener('click', closeMenu);
+
+        // Quantity control logic (from the correct version)
+        const increaseBtn = document.getElementById('increase-qty');
+        const decreaseBtn = document.getElementById('decrease-qty');
+        const quantityDisplay = document.getElementById('quantity-display');
+        let currentQuantity = 1;
+
+        increaseBtn.addEventListener('click', () => {
+            currentQuantity++;
+            quantityDisplay.value = currentQuantity;
+        });
+
+        decreaseBtn.addEventListener('click', () => {
+            if (currentQuantity > 1) {
+                currentQuantity--;
+                quantityDisplay.value = currentQuantity;
+            }
+        });
+    </script>
+
+</body>
+</html>
