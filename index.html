@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر HASSOU Sahara - الإصدار 17.0 (النهائي)</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/vvvvh553-cell/assets/main/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #D97706; --secondary-color: #44403C;
+            --bg-color: #F7F6F2; --white-color: #ffffff;
+            --text-color: #292524; --border-color: #e5e2d9;
+            --border-radius: 12px; --shadow: 0 6px 20px rgba(68, 64, 60, 0.08);
+        }
+        body {
+            font-family: 'Almarai', sans-serif; direction: rtl;
+            background-color: var(--bg-color); margin: 0;
+            color: var(--text-color);
+        }
+        /* FIXED: Truly wider container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        h1, h2, h3 { font-weight: 800; color: var(--secondary-color); }
+
+        .main-header { padding: 20px 0; text-align: center; }
+        .logo { font-size: 2.5rem; font-weight: 800; color: var(--secondary-color); }
+        .logo span { color: var(--primary-color); }
+
+        .section-title { text-align: center; margin: 40px 0 20px; font-size: 2rem; }
+
+        .featured-offer {
+            background: linear-gradient(45deg, var(--secondary-color), #5f5a56);
+            color: var(--white-color); border-radius: var(--border-radius);
+            padding: 30px; margin: 30px 0; display: flex;
+            flex-direction: column; align-items: center; text-align: center;
+        }
+        @media (min-width: 768px) { .featured-offer { flex-direction: row; text-align: right; } }
+        .featured-offer img {
+            width: 150px; height: 150px; border-radius: 50%;
+            border: 4px solid var(--primary-color); object-fit: cover; margin-bottom: 20px;
+        }
+        @media (min-width: 768px) { .featured-offer img { margin-bottom: 0; margin-left: 30px; } }
+        .featured-offer-details h2 { color: var(--white-color); font-size: 1.8rem; }
+        .featured-offer-details p { font-size: 1.1rem; opacity: 0.9; }
+        .featured-offer-details .price { font-size: 2rem; color: var(--primary-color); font-weight: 800; margin-top: 10px; }
+
+        /* FIXED: Categories with professional illustrations */
+        .categories-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;
+        }
+        .category-card {
+            background-color: var(--white-color); border-radius: var(--border-radius);
+            box-shadow: var(--shadow); text-align: center; padding: 25px;
+            transition: all 0.3s ease; text-decoration: none; color: var(--text-color);
+            border: 2px solid transparent;
+        }
+        .category-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        .category-card img { max-width: 100%; height: 120px; margin-bottom: 15px; object-fit: contain; }
+        .category-card h3 { font-size: 1.3rem; margin: 0; }
+
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;
+        }
+        .product-card {
+            background-color: var(--white-color); border-radius: var(--border-radius);
+            box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column;
+        }
+        .product-image img { width: 100%; height: 220px; object-fit: cover; }
+        .product-details { padding: 20px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-title { font-size: 1.3rem; margin: 0 0 10px 0; }
+        .product-description { font-size: 0.95rem; color: #666; min-height: 60px; margin-bottom: 15px; }
+        .product-price { font-size: 1.6rem; color: var(--primary-color); margin-top: auto; }
+        .product-price span { font-size: 1rem; text-decoration: line-through; color: #999; margin-right: 10px; }
+
+        .order-form-section {
+            background-color: var(--white-color); padding: 30px;
+            border-radius: var(--border-radius); box-shadow: var(--shadow);
+            border-top: 5px solid var(--primary-color);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 8px; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 12px; border-radius: 8px;
+            border: 1px solid var(--border-color); font-family: 'Almarai', sans-serif;
+            font-size: 1rem; box-sizing: border-box;
+        }
+        .quantity-control { display: flex; align-items: center; margin-top: 10px; }
+        .quantity-btn { width: 40px; height: 40px; border: 1px solid var(--border-color); background-color: #f9f9f9; font-size: 1.5rem; cursor: pointer; }
+        #quantity-display { width: 60px; height: 40px; text-align: center; font-size: 1.2rem; font-weight: bold; border: 1px solid var(--border-color); border-left: none; border-right: none; }
+        .total-price { text-align: center; margin: 25px 0; font-size: 1.8rem; font-weight: 800; }
+        .total-price span { color: var(--primary-color); }
+        .submit-btn {
+            background: linear-gradient(to top, #10B981, #12D092);
+            color: white; border: none; border-radius: 8px;
+            padding: 15px; width: 100%; font-size: 1.2rem; font-weight: bold;
+            cursor: pointer; border-bottom: 3px solid #0f996b;
+            transition: all 0.2s;
+        }
+        .submit-btn:hover { transform: translateY(-2px); }
+        .submit-btn i { margin-left: 10px; }
+        .main-footer { text-align: center; padding: 30px; color: #777; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">HASSOU <span>Sahara</span></div>
+    </header>
+
+    <main class="container">
+
+        <div class="featured-offer">
+            <img src="https://raw.githubusercontent.com/vvvvh553-cell/assets/main/juicygo.jpg" alt="العصارة المحمولة">
+            <div class="featured-offer-details">
+                <h2>🔥 العرض الأكثر مبيعًا 🔥</h2>
+                <p>العصارة المحمولة JuicyGo - عصير طازج في أي وقت وأي مكان!</p>
+                <div class="price">فقط بـ 270 MAD</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">تصفح حسب الفئة</h2>
+        <div class="categories-grid">
+            <a href="#products" class="category-card">
+                <img src="https://raw.githubusercontent.com/vvvvh553-cell/assets/main/electronics-illustration.png" alt="إلكترونيات">
+                <h3>إلكترونيات</h3>
+            </a>
+            <a href="#products" class="category-card">
+                <img src="https://raw.githubusercontent.com/vvvvh553-cell/assets/main/kitchen-illustration.png" alt="المنزل والمطبخ">
+                <h3>المنزل والمطبخ</h3>
+            </a>
+        </div>
+
+        <h2 id="products" class="section-title">جميع المنتجات</h2>
+        <div class="products-grid">
+            <!-- Products will be dynamically added here by JavaScript -->
+        </div>
+
+        <h2 class="section-title">أدخل معلوماتك لإتمام الطلب</h2>
+        <div class="order-form-section">
+            <form id="order-form">
+                <div class="form-group">
+                    <label for="product-select">اختر المنتج:</label>
+                    <select id="product-select" name="product" required></select>
+                </div>
+                <div class="form-group">
+                    <label>الكمية:</label>
+                    <div class="quantity-control">
+                        <button type="button" class="quantity-btn" id="increase-qty">+</button>
+                        <input type="text" id="quantity-display" value="1" readonly>
+                        <button type="button" class="quantity-btn" id="decrease-qty">-</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="full-name">الاسم الكامل:</label>
+                    <input type="text" id="full-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">المدينة:</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                <div class="total-price">الإجمالي: <span id="total-price-display">0 MAD</span></div>
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    أرسل الطلب عبر واتساب
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 HASSOU Sahara. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const products = [
+            { id: 1, name: "محول طاقة احترافي", price: 299, oldPrice: 350, img: "https://raw.githubusercontent.com/vvvvh553-cell/assets/main/inverter.jpg", desc: "⚡️ حوّل طاقة سيارتك (12V) لكهرباء منزلية (220V). مثالي للرحلات والتخييم." },
+            { id: 2, name: "مصباح يدوي تكتيكي", price: 299, oldPrice: 350, img: "https://raw.githubusercontent.com/vvvvh553-cell/assets/main/flashlight.jpg", desc: "🔦 إضاءة قوية بعيدة المدى. رفيقك الأمين في الظلام والمغامرات." },
+            { id: 3, name: "مروحة سيارة مزدوجة", price: 299, oldPrice: 350, img: "https://raw.githubusercontent.com/vvvvh553-cell/assets/main/fan.jpg", desc: "💨 تبريد فوري ومزدوج في سيارتك. قل وداعاً لحرارة الصيف." },
+            { id: 4, name: "محول طاقة شمسي", price: 399, oldPrice: 450, img: "https://raw.githubusercontent.com/vvvvh553-cell/assets/main/solar-inverter.jpg", desc: "☀️ استغل طاقة الشمس! محول 2000 واط لتشغيل أجهزتك في أي مكان." },
+            { id: 5, name: "العصارة المحمولة JuicyGo", price: 270, oldPrice: 320, img: "https://raw.githubusercontent.com/vvvvh553-cell/assets/main/juicygo.jpg", desc: "🍹 عصير طازج وصحي بضغطة زر. قابلة للشحن عبر USB." },
+            { id: 6, name: "خلاط شخصي (أسود)", price: 270, oldPrice: 320, img: "https://raw.githubusercontent.com/vvvvh553-cell/assets/main/blender-black.jpg", desc: "🖤 تصميم أنيق وقوة فائقة لخلط البروتين والعصائر." },
+            { id: 7, name: "خلاط شخصي (أخضر)", price: 270, oldPrice: 320, img: "https://raw.githubusercontent.com/vvvvh553-cell/assets/main/blender-green.jpg", desc: "💚 لون منعش وأداء قوي. استمتع بمشروباتك الصحية كل يوم." },
+            { id: 8, name: "كشاف شمسي مع راديو", price: 239, oldPrice: 280, img: "https://raw.githubusercontent.com/vvvvh553-cell/assets/main/solar-radio.jpg", desc: "📻 إضاءة، موسيقى، وطاقة شمسية في جهاز واحد. مثالي للطوارئ والرحلات." }
+        ];
+
+        const productsGrid = document.querySelector('.products-grid');
+        const productSelect = document.getElementById('product-select');
+
+        products.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-image"><img src="${p.img}" alt="${p.name}"></div>
+                <div class="product-details">
+                    <h3 class="product-title">${p.name}</h3>
+                    <p class="product-description">${p.desc}</p>
+                    <p class="product-price"><span>${p.oldPrice} MAD</span>${p.price} MAD</p>
+                </div>`;
+            productsGrid.appendChild(card);
+
+            const option = document.createElement('option');
+            option.value = p.id;
+            option.textContent = `${p.name} - ${p.price} MAD`;
+            option.dataset.price = p.price;
+            productSelect.appendChild(option);
+        });
+
+        const quantityDisplay = document.getElementById('quantity-display');
+        const totalPriceDisplay = document.getElementById('total-price-display');
+        const form = document.getElementById('order-form');
+
+        function updateTotalPrice() {
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            if (!selectedOption) return;
+            const price = Number(selectedOption.dataset.price);
+            const quantity = Number(quantityDisplay.value);
+            const total = price * quantity;
+            totalPriceDisplay.textContent = `${total} MAD`;
+        }
+
+        document.getElementById('increase-qty').addEventListener('click', () => {
+            quantityDisplay.value = Number(quantityDisplay.value) + 1;
+            updateTotalPrice();
+        });
+
+        document.getElementById('decrease-qty').addEventListener('click', () => {
+            if (Number(quantityDisplay.value) > 1) {
+                quantityDisplay.value = Number(quantityDisplay.value) - 1;
+                updateTotalPrice();
+            }
+        });
+
+        productSelect.addEventListener('change', updateTotalPrice);
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            const productName = selectedOption.textContent.split(' - ')[0];
+            const quantity = quantityDisplay.value;
+            const total = totalPriceDisplay.textContent;
+            const customerName = document.getElementById('full-name').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+
+            if (!customerName || !phone || !city) {
+                alert('الرجاء ملء جميع حقول معلومات التوصيل.');
+                return;
+            }
+
+            const orderMessage = `*طلب جديد من متجر HASSOU Sahara* ✨
+-----------------------------------
+*المنتج:* ${productName}
+*الكمية:* ${quantity}
+*الإجمالي:* ${total}
+-----------------------------------
+*معلومات الزبون:*
+*الاسم:* ${customerName}
+*الهاتف:* ${phone}
+*المدينة:* ${city}
+-----------------------------------
+`;
+            const yourPhoneNumber = '212607072825';
+            const whatsappUrl = `https://wa.me/${yourPhoneNumber}?text=${encodeURIComponent(orderMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+
+        updateTotalPrice();
+    });
+    </script>
+
+</body>
+</html>
