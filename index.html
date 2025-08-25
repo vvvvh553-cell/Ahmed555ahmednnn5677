@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر HASSOU Sahara - حلول مبتكرة لكل بيت</title>
+    <meta name="description" content="متجر HASSOU Sahara يقدم أفضل المنتجات العصرية: محولات طاقة، كشافات، أدوات منزلية، وعروض حصرية. جودة عالية وتوصيل سريع. اطلب الآن!">
+    <meta name="keywords" content="HASSOU Sahara, محول طاقة, كشاف, خلاط, طاقة شمسية, تسوق أونلاين المغرب">
+    <link rel="icon" href="https://em-content.zobj.net/source/twitter/376/desert_1f3dc.png" type="image/png">
+
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #28a745;
+            --background-gradient: linear-gradient(45deg, #f7b733, #fc4a1a);
+        }
+        body { font-family: 'Tahoma', 'Arial', sans-serif; direction: rtl; background: var(--background-gradient); margin: 0; padding: 20px; }
+        .store-header { text-align: center; color: white; margin-bottom: 30px; padding: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; }
+        .store-header h1 { margin: 0; font-size: 2.8rem; font-weight: bold; text-shadow: 3px 3px 5px rgba(0,0,0,0.4); font-family: 'Impact', 'Arial Black', sans-serif; }
+        .store-header h1 .sahara { font-family: 'Georgia', serif; color: #ffdd00; }
+        .store-header p { margin: 5px 0 0 0; font-size: 1.1rem; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .product-card { background-color: #ffffff; border-radius: 15px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); }
+        .product-image { width: 100%; height: 200px; background-color: #e9ecef; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; }
+        .product-details { padding: 20px; text-align: right; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-title { font-size: 1.2rem; font-weight: bold; color: #333; margin: 0 0 10px 0; }
+        .product-subtitle { font-size: 0.9rem; color: #666; margin: 0 0 15px 0; min-height: 40px; }
+        .product-footer { padding: 20px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+        .product-price { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
+        .buy-button { background-color: var(--secondary-color); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background-color 0.3s; }
+        .buy-button:hover { background-color: #218838; }
+        .special-offer { border: 3px solid #ff9800; }
+        .cart-section { max-width: 1200px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .cart-section h2 { text-align: center; color: #333; margin-bottom: 20px; }
+        #cart-items { list-style: none; padding: 0; }
+        #cart-items li { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
+        #cart-total { font-weight: bold; font-size: 1.2rem; text-align: left; margin-top: 20px; }
+        #checkout-button { display: block; width: 100%; padding: 15px; background-color: var(--primary-color); color: white; border: none; border-radius: 8px; font-size: 1.2rem; cursor: pointer; margin-top: 20px; }
+        #checkout-button:disabled { background-color: #ccc; cursor: not-allowed; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); }
+        .modal-content { background-color: #fefefe; margin: 10% auto; padding: 30px; border: 1px solid #888; width: 90%; max-width: 500px; border-radius: 15px; position: relative; }
+        .close-button { color: #aaa; position: absolute; left: 25px; top: 10px; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .order-form input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+        #submit-order { background-color: var(--secondary-color); width: 100%; padding: 15px; color: white; border: none; border-radius: 8px; font-size: 1.2rem; cursor: pointer; }
+        .store-footer { text-align: center; color: white; margin-top: 40px; padding: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; }
+        .store-footer a { color: #fff; text-decoration: none; font-weight: bold; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+    <header class="store-header">
+        <h1>HASSOU <span class="sahara">Sahara</span></h1>
+        <p>حلول مبتكرة لكل بيت</p>
+    </header>
+
+    <div class="products-grid">
+        <!-- المنتج 1: محول طاقة -->
+        <div class="product-card">
+            <div class="product-image"><img src="https://i.ibb.co/XrW7Xbkn/IMG-20250824-130200.jpg" alt="محول طاقة احترافي"></div>
+            <div class="product-details"><h3 class="product-title" dir="auto">محول طاقة (Inverter)</h3><p class="product-subtitle">من 12V/24V إلى 110V/220V</p></div>
+            <div class="product-footer"><span class="product-price">299</span><button class="buy-button" onclick="addToCart('محول طاقة', 299)">أضف للسلة</button></div>
+        </div>
+        <!-- المنتج 2: مصباح يدوي -->
+        <div class="product-card">
+            <div class="product-image"><img src="https://i.ibb.co/0Vq2FG35/IMG-20250824-130404.jpg" alt="مصباح يدوي"></div>
+            <div class="product-details"><h3 class="product-title" dir="auto">مصباح يدوي قوي</h3><p class="product-subtitle">كشاف "SmartBeam Max"</p></div>
+            <div class="product-footer"><span class="product-price">299</span><button class="buy-button" onclick="addToCart('مصباح يدوي قوي', 299)">أضف للسلة</button></div>
+        </div>
+        <!-- المنتج 3: مروحة مزدوجة -->
+        <div class="product-card">
+            <div class="product-image"><img src="https://i.ibb.co/BVn6VnFR/IMG-20250824-130438.jpg" alt="مروحة مزدوجة"></div>
+            <div class="product-details"><h3 class="product-title" dir="auto">مروحة مزدوجة صغيرة</h3><p class="product-subtitle">قابلة للتدوير (Double Fan)</p></div>
+            <div class="product-footer"><span class="product-price">299</span><button class="buy-button" onclick="addToCart('مروحة مزدوجة', 299)">أضف للسلة</button></div>
+        </div>
+        <!-- المنتج 4: محول طاقة شمسي -->
+        <div class="product-card">
+            <div class="product-image"><img src="https://i.ibb.co/b5ZShfJF/IMG-20250824-130243.jpg" alt="محول طاقة شمسي"></div>
+            <div class="product-details"><h3 class="product-title" dir="auto">محول طاقة شمسي 2000 واط</h3><p class="product-subtitle">"SolarPower Pro 2000"</p></div>
+            <div class="product-footer"><span class="product-price">399</span><button class="buy-button" onclick="addToCart('محول طاقة شمسي', 399)">أضف للسلة</button></div>
+        </div>
+        <!-- المنتج 5: العصارة القابلة للشحن -->
+        <div class="product-card">
+            <div class="product-image"><img src="https://i.ibb.co/MDqNJKXj/Screenshot-2025-08-24-12-59-14-196-com-whatsapp.jpg" alt="عصارة قابلة للشحن"></div>
+            <div class="product-details"><h3 class="product-title" dir="auto">العصارة القابلة للشحن</h3><p class="product-subtitle">"JuicyGo Portable"</p></div>
+            <div class="product-footer"><span class="product-price">270</span><button class="buy-button" onclick="addToCart('عصارة قابلة للشحن', 270)">أضف للسلة</button></div>
+        </div>
+        <!-- المنتج 6: خلاط أسود -->
+        <div class="product-card">
+            <div class="product-image"><img src="https://i.ibb.co/Y4xX67c7/Screenshot-2025-08-24-12-58-04-141-com-whatsapp.jpg" alt="خلاط أسود"></div>
+            <div class="product-details"><h3 class="product-title" dir="auto">خلاط Hassou Sahara 🖤</h3><p class="product-subtitle">اللون: أسود</p></div>
+            <div class="product-footer"><span class="product-price">270</span><button class="buy-button" onclick="addToCart('خلاط أسود', 270)">أضف للسلة</button></div>
+        </div>
+        <!-- المنتج 7: خلاط أخضر -->
+        <div class="product-card">
+            <div class="product-image"><img src="https://i.ibb.co/4RCksWSQ/Screenshot-2025-08-24-12-58-46-994-com-whatsapp.jpg" alt="خلاط أخضر"></div>
+            <div class="product-details"><h3 class="product-title" dir="auto">خلاط Hassou Sahara 💚</h3><p class="product-subtitle">اللون: أخضر</p></div>
+            <div class="product-footer"><span class="product-price">270</span><button class="buy-button" onclick="addToCart('خلاط أخضر', 270)">أضف للسلة</button></div>
+        </div>
+        <!-- المنتج 8: كشاف متعدد الوظائف -->
+        <div class="product-card">
+            <div class="product-image"><img src="https://i.ibb.co/MxJPvM3V/Screenshot-2025-08-24-12-58-18-377-com-whatsapp.jpg" alt="كشاف متعدد الوظائف"></div>
+            <div class="product-details"><h3 class="product-title" dir="auto">كشاف شمسي متعدد الوظائف 🔦</h3><p class="product-subtitle">إضاءة وصوت في جهاز واحد</p></div>
+            <div class="product-footer"><span class="product-price">239</span><button class="buy-button" onclick="addToCart('كشاف متعدد الوظائف', 239)">أضف للسلة</button></div>
+        </div>
+        <!-- العرض الخاص -->
+        <div class="product-card special-offer">
+            <div class="product-image"><img src="https://i.ibb.co/yDNcj2f/Screenshot-2025-08-24-12-58-31-980-com-whatsapp.jpg" alt="عرض خاص"></div>
+            <div class="product-details"><h3 class="product-title" dir="auto">🔥 عرض خاص 🔥</h3><p class="product-subtitle">احصل على 2 من العصارة القابلة للشحن</p></div>
+            <div class="product-footer"><span class="product-price">449</span><button class="buy-button" onclick="addToCart('عرض خاص: 2 عصارة', 449)">اطلب العرض</button></div>
+        </div>
+    </div>
+
+    <div class="cart-section"><h2>🛒 سلة المشتريات</h2><ul id="cart-items"></ul><p id="cart-total">الإجمالي: 0 درهم</p><button id="checkout-button" disabled>إتمام الطلب</button></div>
+    <div id="order-modal" class="modal"><div class="modal-content"><span class="close-button">&times;</span><h3>📝 معلومات التوصيل</h3><form class="order-form" id="customer-form"><input type="text" id="first-name" placeholder="الاسم الشخصي" required><input type="text" id="last-name" placeholder="الاسم العائلي" required><input type="text" id="city" placeholder="المدينة" required><input type="text" id="address" placeholder="العنوان الكامل" required><input type="text" id="house-number" placeholder="رقم المنزل أو الشقة" required><button type="submit" id="submit-order">إرسال الطلب عبر واتساب</button></form></div></div>
+    <footer class="store-footer"><h3>للتواصل أو الاستفسار</h3><p><a href="https://wa.me/212607072825" target="_blank">واتساب: 0607072825</a> | <a href="mailto:ahmedroor014@gmail.com">البريد الإلكتروني</a></p></footer>
+    <script>
+        const cart = []; const cartItemsElement = document.getElementById('cart-items'); const cartTotalElement = document.getElementById('cart-total'); const checkoutButton = document.getElementById('checkout-button'); const modal = document.getElementById('order-modal'); const closeButton = document.querySelector('.close-button'); const customerForm = document.getElementById('customer-form'); function addToCart(name, price) { const existingItem = cart.find(item => item.name === name); if (existingItem) { existingItem.quantity++; } else { cart.push({ name, price, quantity: 1 }); } updateCart(); } function updateCart() { cartItemsElement.innerHTML = ''; let total = 0; cart.forEach(item => { const li = document.createElement('li'); li.innerHTML = `<span>${item.name} (x${item.quantity})</span><span>${item.price * item.quantity} درهم</span>`; cartItemsElement.appendChild(li); total += item.price * item.quantity; }); cartTotalElement.textContent = `الإجمالي: ${total} درهم`; checkoutButton.disabled = cart.length === 0; } checkoutButton.addEventListener('click', () => { if (cart.length > 0) { modal.style.display = 'block'; } }); closeButton.addEventListener('click', () => { modal.style.display = 'none'; }); window.addEventListener('click', (event) => { if (event.target == modal) { modal.style.display = 'none'; } }); customerForm.addEventListener('submit', (event) => { event.preventDefault(); const firstName = document.getElementById('first-name').value; const lastName = document.getElementById('last-name').value; const city = document.getElementById('city').value; const address = document.getElementById('address').value; const houseNumber = document.getElementById('house-number').value; let orderMessage = `*طلب جديد من متجر HASSOU Sahara* ✨\n\n*معلومات الزبون:*\nالاسم: ${firstName} ${lastName}\nالمدينة: ${city}\nالعنوان: ${address}, رقم ${houseNumber}\n\n*المنتجات المطلوبة:*\n`; let total = 0; cart.forEach(item => { orderMessage += `- ${item.name} (الكمية: ${item.quantity}) - ${item.price * item.quantity} درهم\n`; total += item.price * item.quantity; }); orderMessage += `\n*الإجمالي: ${total} درهم*`; const yourPhoneNumber = '212607072825'; const whatsappUrl = `https://wa.me/${yourPhoneNumber}?text=${encodeURIComponent(orderMessage)}`; window.open(whatsappUrl, '_blank'); modal.style.display = 'none'; alert('شكراً لك! سيتم الآن تحويلك إلى واتساب لإرسال طلبك.'); cart.length = 0; updateCart(); customerForm.reset(); });
+    </script>
+
+</body>
+</html>
