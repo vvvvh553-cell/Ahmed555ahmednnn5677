@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العصارة المحمولة - قوة وأناقة</title>
+    <link rel="icon" href="https://i.ibb.co/MDqNJKXj/Screenshot-2025-08-24-12-59-14-196-com-whatsapp.jpg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #f59e0b; /* برتقالي جذاب */
+            --secondary-color: #1f2937; /* رمادي داكن للنصوص */
+            --bg-color: #ffffff;
+            --light-bg-color: #f9fafb; /* خلفية رمادية فاتحة للأقسام */
+            --text-color: #374151;
+            --white-color: #ffffff;
+            --green-color: #10b981; /* أخضر للعروض */
+            --border-radius: 12px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Almarai', sans-serif;
+            direction: rtl;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- شريط العروض العلوي --- */
+        .promo-bar {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .promo-bar .icon { color: var(--primary-color); margin-left: 8px; }
+
+        /* --- الهيدر --- */
+        .main-header {
+            padding: 20px 0;
+            background-color: var(--white-color);
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+        }
+        .logo span { color: var(--primary-color); }
+
+        /* --- القسم الرئيسي (البطل) --- */
+        .hero-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        .main-title .icon { font-size: 2rem; color: var(--primary-color); }
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+        .product-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        .price-box {
+            margin-bottom: 20px;
+        }
+        .old-price {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            color: #9ca3af;
+            margin-left: 15px;
+        }
+        .new-price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+        .new-price span { font-size: 1.5rem; }
+
+        /* --- قسم المميزات --- */
+        .features-section {
+            padding: 40px 0;
+            background-color: var(--light-bg-color);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .feature-card {
+            background-color: var(--white-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        .feature-card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: var(--secondary-color);
+        }
+
+        /* --- قسم الطلب --- */
+        .order-section {
+            padding: 50px 0;
+        }
+        .order-form-container {
+            background-color: var(--white-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .urgency-box {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .urgency-box p { margin: 5px 0; font-weight: 700; }
+        .urgency-box .highlight {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .order-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-align: right;
+            font-size: 1rem;
+            font-family: 'Almarai', sans-serif;
+        }
+        .order-form input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px #f59e0b40;
+        }
+        .order-button {
+            background: linear-gradient(to top, #d97706, var(--primary-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            border-bottom: 3px solid #b45309;
+            transition: transform 0.1s;
+        }
+        .order-button:hover { transform: translateY(-2px); }
+        .order-button:active { transform: translateY(1px); }
+        .order-button .icon { margin-right: 10px; }
+
+        /* --- الفوتر --- */
+        .main-footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: var(--secondary-color);
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="promo-bar">
+        <i class="fas fa-star icon"></i>
+        خصم 35% حصرياً لمدة 3 أيام فقط!
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">HASSOU <span>Sahara</span></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="main-title">
+                    <i class="fas fa-blender-phone icon"></i>
+                    العصارة المحمولة
+                </h1>
+                <p class="subtitle">قوة وأناقة في متناول يدك - حضّر عصيرك الطازج في أي مكان!</p>
+                
+                <img src="https://i.ibb.co/MDqNJKXj/Screenshot-2025-08-24-12-59-14-196-com-whatsapp.jpg" alt="العصارة المحمولة" class="product-image">
+
+                <div class="price-box">
+                    <span class="old-price">349 <span>درهم</span></span>
+                    <span class="new-price">270 <span>درهم</span></span>
+                </div>
+
+                <a href="#order-form" class="order-button">
+                    <i class="fas fa-shopping-cart icon"></i>
+                    أريد أن أطلب الآن
+                </a>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">لماذا عصارتنا هي الأفضل؟</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-bolt"></i></div>
+                        <h3>شحن سريع USB</h3>
+                        <p>اشحنها بسهولة في أي مكان، تماماً مثل هاتفك.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-leaf"></i></div>
+                        <h3>6 شفرات فولاذية</h3>
+                        <p>قوة هائلة لطحن الفواكه والخضروات وحتى الثلج.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>نظام أمان ذكي</h3>
+                        <p>لا تعمل إلا عند إغلاقها بإحكام لحماية كاملة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="order-section" id="order-form">
+            <div class="container">
+                <div class="order-form-container">
+                    <div class="urgency-box">
+                        <p>🔥 سارع! فقط <span id="stock-count" class="highlight">63</span> قطعة متبقية!</p>
+                        <p>👀 يشاهده الآن <span id="viewers-count" class="highlight">29</span> شخص.</p>
+                    </div>
+                    <h2 class="section-title" style="margin-bottom: 20px;">📝 املأ معلوماتك للطلب</h2>
+                    <form id="customer-form" class="order-form">
+                        <input type="text" id="full-name" placeholder="الاسم الكامل" required>
+                        <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+                        <input type="text" id="city" placeholder="المدينة" required>
+                        <button type="submit" class="order-button">
+                            <i class="fab fa-whatsapp icon"></i>
+                            اضغط هنا للتأكيد عبر واتساب
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 HASSOU Sahara. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // --- تحديث الأرقام الوهمية لإعطاء حيوية للصفحة ---
+        const stockCountEl = document.getElementById('stock-count');
+        const viewersCountEl = document.getElementById('viewers-count');
+
+        setInterval(() => {
+            // تغيير عدد المشاهدين بشكل عشوائي
+            let currentViewers = parseInt(viewersCountEl.textContent);
+            const change = Math.random() > 0.5 ? 1 : -1;
+            viewersCountEl.textContent = Math.max(15, currentViewers + change); // لا ينزل تحت 15
+        }, 3000); // كل 3 ثواني
+
+        // --- التعامل مع نموذج الطلب ---
+        const customerForm = document.getElementById('customer-form');
+        customerForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = document.getElementById('full-name').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+            const orderButton = customerForm.querySelector('.order-button');
+
+            // التحقق من أن الحقول ليست فارغة
+            if (!name || !phone || !city) {
+                alert('المرجو ملء جميع الحقول لإتمام الطلب.');
+                return;
+            }
+            
+            // تغيير نص الزر لإعطاء انطباع بالمعالجة
+            orderButton.innerHTML = '<i class="fas fa-spinner fa-spin icon"></i> ...جاري تحويلك';
+            orderButton.disabled = true;
+
+            // معلومات المنتج
+            const productName = "العصارة المحمولة";
+            const productPrice = "270 MAD";
+
+            // رسالة الطلب لواتساب
+            let orderMessage = `*طلب جديد من متجر HASSOU Sahara* ✨\n\n*المنتج المطلوب:*\n- ${productName} (${productPrice})\n\n*معلومات الزبون:*\n- الاسم: ${name}\n- الهاتف: ${phone}\n- المدينة: ${city}`;
+            
+            const yourPhoneNumber = '212607072825'; // !! تأكد من وضع رقمك الصحيح هنا !!
+            const whatsappUrl = `https://wa.me/${yourPhoneNumber}?text=${encodeURIComponent(orderMessage)}`;
+
+            // الانتظار قليلاً ثم التحويل
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                
+                // إعادة الزر إلى حالته الأصلية
+                orderButton.innerHTML = '<i class="fab fa-whatsapp icon"></i> اضغط هنا للتأكيد عبر واتساب';
+                orderButton.disabled = false;
+                customerForm.reset();
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>
