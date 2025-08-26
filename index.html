@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر HASSOU Sahara - تصميم احترافي</title>
+    <link rel="icon" href="https://i.ibb.co/ds0twW8y/IMG-20250826-014020.jpg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- استخدام نفس ألوان صفحة الهبوط الاحترافية --- */
+        :root {
+            --primary-color: #f59e0b; /* برتقالي جذاب */
+            --secondary-color: #1f2937; /* رمادي داكن للنصوص */
+            --bg-color: #f9fafb; /* خلفية رمادية فاتحة */
+            --text-color: #374151;
+            --white-color: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Almarai', sans-serif; direction: rtl; background-color: var(--bg-color);
+            margin: 0; padding: 0; color: var(--text-color); overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- الهيدر --- */
+        .main-header {
+            padding: 20px 0; background-color: var(--white-color);
+            border-bottom: 1px solid #f3f4f6; text-align: center;
+        }
+        .logo { font-size: 2.2rem; font-weight: 800; color: var(--secondary-color); }
+        .logo span { color: var(--primary-color); }
+
+        /* --- قسم التصنيفات --- */
+        .category-section { padding: 40px 0; }
+        .section-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 30px; color: var(--secondary-color); }
+        .category-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .category-button {
+            background-color: var(--white-color); border: 1px solid #e5e7eb;
+            padding: 12px 25px; border-radius: 8px; font-size: 1rem;
+            font-weight: 700; cursor: pointer; transition: all 0.2s ease;
+            font-family: 'Almarai', sans-serif;
+        }
+        .category-button:hover { background-color: #f3f4f6; }
+        .category-button.active {
+            background-color: var(--primary-color); color: var(--white-color);
+            border-color: var(--primary-color);
+        }
+
+        /* --- شبكة المنتجات --- */
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px; padding: 20px 0;
+        }
+        .product-card {
+            background-color: var(--white-color); border-radius: var(--border-radius);
+            border: 1px solid #e5e7eb; overflow: hidden; display: flex; flex-direction: column;
+            transition: all 0.2s ease; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+        .product-image img { width: 100%; height: 220px; object-fit: cover; }
+        .product-details { padding: 20px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-title { font-size: 1.3rem; font-weight: 700; margin: 0 0 10px 0; color: var(--secondary-color); }
+        .product-price { font-size: 1.6rem; font-weight: 800; color: var(--primary-color); margin-top: auto; }
+        .product-price span { font-size: 1rem; }
+
+        /* --- النافذة المنبثقة (Modal) بتصميم احترافي --- */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow-y: auto;
+            background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center;
+        }
+        .modal.show { display: flex; }
+        .modal-content {
+            background-color: var(--bg-color); width: 90%; max-width: 450px;
+            border-radius: var(--border-radius); position: relative;
+            box-shadow: var(--shadow); padding: 30px;
+        }
+        .close-button {
+            color: #9ca3af; position: absolute; left: 15px; top: 15px;
+            font-size: 28px; font-weight: bold; cursor: pointer;
+        }
+        .order-form input {
+            width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #d1d5db;
+            border-radius: 8px; box-sizing: border-box; text-align: right;
+            font-size: 1rem; font-family: 'Almarai', sans-serif;
+        }
+        .order-form input:focus {
+            border-color: var(--primary-color); outline: none; box-shadow: 0 0 0 2px #f59e0b40;
+        }
+        .order-button {
+            background: linear-gradient(to top, #d97706, var(--primary-color));
+            color: white; border: none; border-radius: 8px; padding: 16px;
+            font-size: 1.3rem; font-weight: bold; cursor: pointer; width: 100%;
+            border-bottom: 3px solid #b45309; transition: transform 0.1s;
+        }
+        .order-button .icon { margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">HASSOU <span>Sahara</span></div>
+    </header>
+
+    <main class="container">
+        <section class="category-section">
+            <h2 class="section-title">تسوق حسب الفئة</h2>
+            <div class="category-grid" id="category-grid">
+                <!-- أزرار التصنيفات ستضاف هنا بواسطة JavaScript -->
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="products-grid" id="products-grid">
+                <!-- بطاقات المنتجات ستضاف هنا بواسطة JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- النافذة المنبثقة للطلب -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="section-title" style="margin-bottom: 20px;">📝 املأ معلوماتك للطلب</h2>
+            <form id="customer-form" class="order-form">
+                <input type="text" id="full-name" placeholder="الاسم الكامل" required>
+                <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+                <input type="text" id="city" placeholder="المدينة" required>
+                <button type="submit" class="order-button">
+                    <i class="fab fa-whatsapp icon"></i>
+                    تأكيد الطلب عبر واتساب
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- قاعدة البيانات الكاملة للمنتجات والتصنيفات ---
+        const db = {
+            categories: [
+                { id: 'all', name: 'الكل' },
+                { id: 'electronics', name: 'إلكترونيات' },
+                { id: 'kitchen', name: 'مطبخ' },
+                { id: 'tools', name: 'أدوات' } // مثال لتصنيف إضافي
+            ],
+            products: [
+                { id: 1, name: 'محول طاقة احترافي', price: 299, img: 'https://i.ibb.co/XrW7Xbkn/IMG-20250824-130200.jpg', category: 'electronics' },
+                { id: 2, name: 'مصباح يدوي تكتيكي', price: 299, img: 'https://i.ibb.co/0Vq2FG35/IMG-20250824-130404.jpg', category: 'tools' },
+                { id: 3, name: 'مروحة سيارة مزدوجة', price: 299, img: 'https://i.ibb.co/BVn6VnFR/IMG-20250824-130438.jpg', category: 'electronics' },
+                { id: 4, name: 'محول طاقة شمسي', price: 399, img: 'https://i.ibb.co/b5ZShfJF/IMG-20250824-130243.jpg', category: 'electronics' },
+                { id: 5, name: 'العصارة المحمولة', price: 270, img: 'https://i.ibb.co/MDqNJKXj/Screenshot-2025-08-24-12-59-14-196-com-whatsapp.jpg', category: 'kitchen' },
+                { id: 6, name: 'خلاط شخصي (أسود)', price: 270, img: 'https://i.ibb.co/Y4xX67c7/Screenshot-2025-08-24-12-58-04-141-com-whatsapp.jpg', category: 'kitchen' },
+                { id: 7, name: 'خلاط شخصي (أخضر)', price: 270, img: 'https://i.ibb.co/4RCksWSQ/Screenshot-2025-08-24-12-58-46-994-com-whatsapp.jpg', category: 'kitchen' },
+                { id: 8, name: 'كشاف شمسي مع راديو', price: 239, img: 'https://i.ibb.co/MxJPvM3V/Screenshot-2025-08-24-12-58-18-377-com-whatsapp.jpg', category: 'tools' }
+            ]
+        };
+
+        // --- عناصر الصفحة ---
+        const categoryGrid = document.getElementById('category-grid');
+        const productsGrid = document.getElementById('products-grid');
+        const orderModal = document.getElementById('order-modal');
+        const closeModalBtn = document.querySelector('.close-button');
+        const customerForm = document.getElementById('customer-form');
+        
+        let selectedProduct = null;
+
+        // --- عرض التصنيفات ---
+        function displayCategories() {
+            db.categories.forEach(cat => {
+                const button = document.createElement('button');
+                button.className = 'category-button';
+                button.textContent = cat.name;
+                button.dataset.categoryId = cat.id;
+                if (cat.id === 'all') {
+                    button.classList.add('active');
+                }
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.category-button').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    displayProducts(cat.id);
+                });
+                categoryGrid.appendChild(button);
+            });
+        }
+
+        // --- عرض المنتجات ---
+        function displayProducts(filter = 'all') {
+            productsGrid.innerHTML = '';
+            const filtered = filter === 'all' ? db.products : db.products.filter(p => p.category === filter);
+            
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image"><img src="${product.img}" alt="${product.name}"></div>
+                    <div class="product-details">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">${product.price} <span>MAD</span></p>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    selectedProduct = product;
+                    orderModal.classList.add('show');
+                });
+                productsGrid.appendChild(card);
+            });
+        }
+
+        // --- وظائف النافذة المنبثقة ---
+        function closeModal() {
+            orderModal.classList.remove('show');
+            customerForm.reset();
+        }
+        closeModalBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', (event) => {
+            if (event.target === orderModal) {
+                closeModal();
+            }
+        });
+
+        // --- إرسال الطلب ---
+        customerForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = document.getElementById('full-name').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+            const orderButton = customerForm.querySelector('.order-button');
+
+            if (!name || !phone || !city) {
+                alert('المرجو ملء جميع الحقول لإتمام الطلب.');
+                return;
+            }
+            
+            orderButton.innerHTML = '<i class="fas fa-spinner fa-spin icon"></i> ...جاري التأكيد';
+            orderButton.disabled = true;
+
+            let orderMessage = `*طلب جديد من متجر HASSOU Sahara* ✨\n\n*المنتج المطلوب:*\n- ${selectedProduct.name} (${selectedProduct.price} MAD)\n\n*معلومات الزبون:*\n- الاسم: ${name}\n- الهاتف: ${phone}\n- المدينة: ${city}`;
+            const yourPhoneNumber = '212607072825'; // !! تأكد من وضع رقمك الصحيح هنا !!
+            const whatsappUrl = `https://wa.me/${yourPhoneNumber}?text=${encodeURIComponent(orderMessage)}`;
+
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                orderButton.innerHTML = '<i class="fab fa-whatsapp icon"></i> تأكيد الطلب عبر واتساب';
+                orderButton.disabled = false;
+                closeModal();
+            }, 1500);
+        });
+
+        // --- بدء تشغيل المتجر ---
+        displayCategories();
+        displayProducts();
+    </script>
+
+</body>
+</html>
