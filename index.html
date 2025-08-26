@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر HASSOU Sahara</title>
+  <link rel="icon" href="https://i.ibb.co/ds0twW8y/IMG-20250826-014020.jpg" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #f59e0b; --secondary-color: #1f2937; --bg-color: #f9fafb;
+      --text-color: #374151; --white-color: #ffffff; --border-radius: 12px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    body { font-family: 'Almarai', sans-serif; margin: 0; background: var(--bg-color); color: var(--text-color); }
+    html { scroll-behavior: smooth; }
+
+    /* Navbar */
+    .navbar {
+      background: var(--secondary-color); padding: 15px; display: flex; justify-content: space-around;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .navbar a {
+      color: white; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 6px;
+    }
+    .navbar a:hover { color: var(--primary-color); }
+
+    .main-header { text-align: center; padding: 30px 10px; }
+    .logo { font-size: 2rem; font-weight: 800; color: var(--secondary-color); display:flex; justify-content:center; align-items:center; gap:10px; }
+    .logo span { color: var(--primary-color); }
+
+    .section-title { text-align: center; font-size: 1.8rem; font-weight: 800; margin: 30px 0; color: var(--secondary-color); }
+
+    /* Cards */
+    .category-card, .product-card {
+      border: 2px solid var(--primary-color); border-radius: var(--border-radius);
+      background: var(--white-color); overflow: hidden; box-shadow: var(--shadow);
+      transition: transform .2s;
+    }
+    .category-card:hover, .product-card:hover { transform: translateY(-5px); }
+    .category-card img { width: 100%; height: 120px; object-fit: cover; }
+    .category-card p { padding: 10px; font-weight: 700; text-align: center; }
+
+    .products-grid, .category-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px;
+    }
+    .product-image img { width: 100%; height: 200px; object-fit: cover; }
+    .product-details { padding: 15px; text-align: center; }
+    .product-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+    .product-price { font-size: 1.4rem; font-weight: 800; color: var(--primary-color); }
+
+    /* Modal */
+    .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.6);
+      justify-content:center; align-items:center; z-index:2000; }
+    .modal.show { display: flex; }
+    .modal-content {
+      background: var(--white-color); border-radius: var(--border-radius); padding: 25px;
+      max-width: 400px; width: 90%; box-shadow: var(--shadow); position: relative;
+    }
+    .close-button { position: absolute; top: 10px; left: 15px; font-size: 24px; cursor: pointer; color: #888; }
+    .order-form input {
+      width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px;
+    }
+    .qty-box { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 15px 0; }
+    .qty-btn {
+      width: 40px; height: 40px; border: none; border-radius: 50%; background: var(--primary-color);
+      color: white; font-size: 20px; cursor: pointer; font-weight: bold;
+    }
+    .order-button {
+      width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 1.2rem;
+      background: var(--primary-color); color: white; cursor: pointer; font-weight: bold;
+    }
+    ul {list-style:none; margin:0; padding:0; text-align:right;}
+    ul li{margin:2px 0; font-size:0.9rem;}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#home"><i class="fa fa-home"></i> الرئيسية</a>
+    <a href="#categories"><i class="fa fa-list"></i> التصنيفات</a>
+    <a href="#products"><i class="fa fa-box"></i> المنتجات</a>
+    <a href="#trending"><i class="fa fa-star"></i> الأكثر مشاهدة</a>
+  </nav>
+
+  <header class="main-header" id="home">
+    <div class="logo">
+      <img src="https://i.ibb.co/ds0twW8y/IMG-20250826-014020.jpg" alt="HASSOU Sahara" style="height:60px; border-radius:12px;">
+      HASSOU <span>Sahara</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- التصنيفات -->
+    <section class="category-section" id="categories">
+      <h2 class="section-title">تسوق حسب الفئة</h2>
+      <div class="category-grid" id="category-grid"></div>
+    </section>
+
+    <!-- المنتجات -->
+    <section class="products-section" id="products">
+      <h2 class="section-title" id="products-title">كل المنتجات</h2>
+      <div class="products-grid" id="products-grid"></div>
+    </section>
+
+    <!-- الأكثر مشاهدة -->
+    <section class="trending-section" id="trending">
+      <h2 class="section-title">🔥 يشاهده الآن</h2>
+      <div class="products-grid" id="trending-grid"></div>
+    </section>
+  </main>
+
+  <!-- نافذة الطلب -->
+  <div id="order-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2 class="section-title" style="font-size:1.4rem;">📝 املأ معلوماتك للطلب</h2>
+      <form id="customer-form" class="order-form">
+        <input type="text" id="full-name" placeholder="الاسم الكامل" required>
+        <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+        <input type="text" id="city" placeholder="المدينة" required>
+
+        <div class="qty-box">
+          <button type="button" class="qty-btn" id="minus">-</button>
+          <span id="quantity">1</span>
+          <button type="button" class="qty-btn" id="plus">+</button>
+        </div>
+
+        <button type="submit" class="order-button">
+          <i class="fab fa-whatsapp"></i> تأكيد الطلب عبر واتساب
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const db = {
+      categories: [
+        { id: 'all', name: 'الكل', image: 'https://i.ibb.co/L8y2vW7/all-items-icon.png' },
+        { id: 'electronics', name: 'إلكترونيات', image: 'https://i.ibb.co/vx2Mjt1P/IMG-20250826-003818.jpg' },
+        { id: 'kitchen', name: 'مطبخ', image: 'https://i.ibb.co/fG1vQDFt/Screenshot-2025-08-26-00-28-15-926-edit-com-android-chrome.jpg' },
+        { id: 'tools', name: 'أدوات', image: 'https://i.ibb.co/k3SgC5h/tools-icon.png' }
+      ],
+      products: [
+        { id: 1, name: 'محول طاقة احترافي', price: 299, img: 'https://i.ibb.co/XrW7Xbkn/IMG-20250824-130200.jpg', category: 'electronics' },
+        { id: 2, name: 'مصباح يدوي تكتيكي', price: 299, img: 'https://i.ibb.co/0Vq2FG35/IMG-20250824-130404.jpg', category: 'tools' },
+        { id: 3, name: 'مروحة سيارة مزدوجة', price: 299, img: 'https://i.ibb.co/BVn6VnFR/IMG-20250824-130438.jpg', category: 'electronics' },
+        { id: 4, name: 'محول طاقة شمسي', price: 399, img: 'https://i.ibb.co/b5ZShfJF/IMG-20250824-130243.jpg', category: 'electronics' },
+        { id: 5, name: 'العصارة المحمولة', price: 270, img: 'https://i.ibb.co/MDqNJKXj/Screenshot-2025-08-24-12-59-14-196-com-whatsapp.jpg', category: 'kitchen' },
+        { id: 6, name: 'خلاط شخصي (أسود)', price: 270, img: 'https://i.ibb.co/Y4xX67c7/Screenshot-2025-08-24-12-58-04-141-com-whatsapp.jpg', category: 'kitchen' },
+        { id: 7, name: 'خلاط شخصي (أخضر)', price: 270, img: 'https://i.ibb.co/4RCksWSQ/Screenshot-2025-08-24-12-58-46-994-com-whatsapp.jpg', category: 'kitchen' },
+        { id: 8, name: 'كشاف شمسي مع راديو', price: 239, img: 'https://i.ibb.co/MxJPvM3V/Screenshot-2025-08-24-12-58-18-377-com-whatsapp.jpg', category: 'tools' }
+      ]
+    };
+
+    function getProductDescription(productId){
+      const descriptions = {
+        1: ["⚡ 2000W","مناسب للحواسيب","تصميم احترافي","اقتصادي","جودة عالية","ضمان سنة","مقاوم للحرارة","سهل التركيب","خفيف الوزن","صوت منخفض"],
+        2: ["💡 إضاءة قوية","مدى بعيد","مقاوم للماء","مناسب للتخييم","تصميم مدمج","بطارية طويلة","وزن خفيف","مقاوم للصدمات","إعادة شحن سريع","مقبض مريح"],
+        3: ["❄️ تبريد مزدوج","قابل للتعديل","يوصل USB","صوت هادئ","تصميم صغير","مناسب للسيارة","استهلاك منخفض","مروحتين قويتين","حركة مرنة","مقاوم للحرارة"],
+        4: ["☀️ طاقة شمسية","اقتصادي","بيئي","مناسب للطوارئ","إخراج مستقر","تصميم محمول","بطارية قوية","آمن","جودة عالية","سهل الاستعمال"],
+        5: ["🍹 6 شفرات","بطارية قوية","سهلة التنظيف","تصميم أنيق","شحن USB","خفيف الوزن","مناسب للسفر","مقاوم للكسر","سريع","متعدد الاستعمال"],
+        6: ["⚫ أسود أنيق","6 شفرات","شحن USB","بطارية قوية","مناسب للرحلات","مقاوم للصدمات","خفيف","سهل الاستعمال","تنظيف سريع","جودة ممتازة"],
+        7: ["🟢 لون أخضر","شفرات قوية","بطارية متينة","محمول","تصميم عصري","خفيف","إعادة شحن USB","مناسب للرحلات","مقاوم للكسر","سهل التنظيف"],
+        8: ["🔦 كشاف شمسي","مع راديو","بطارية مدمجة","شحن بالطاقة الشمسية","مناسب للطوارئ","إضاءة قوية","راديو FM","تصميم محمول","مقاوم للماء","مناسب للتخييم"]
+      };
+      return descriptions[productId] || [];
+    }
+
+    function getStars(productId){
+      const stars = {1:5,2:4,3:4,4:5,5:5,6:4,7:4,8:5};
+      let rating = stars[productId] || 4;
+      return "⭐".repeat(rating) + (rating<5 ? "✰" : "");
+    }
+
+    const categoryGrid = document.getElementById('category-grid');
+    const productsGrid = document.getElementById('products-grid');
+    const trendingGrid = document.getElementById('trending-grid');
+    const productsTitle = document.getElementById('products-title');
+    const orderModal = document.getElementById('order-modal');
+    const closeModalBtn = document.querySelector('.close-button');
+    const customerForm = document.getElementById('customer-form');
+    const qtySpan = document.getElementById('quantity');
+    const plusBtn = document.getElementById('plus');
+    const minusBtn = document.getElementById('minus');
+    
+    let selectedProduct = null;
+    let quantity = 1;
+
+    function displayCategories() {
+      db.categories.forEach(cat => {
+        const card = document.createElement('div');
+        card.className = 'category-card';
+        card.dataset.categoryId = cat.id;
+        card.innerHTML = `<img src="${cat.image}" alt="${cat.name}"><p>${cat.name}</p>`;
+        if (cat.id === 'all') card.classList.add('active');
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          displayProducts(cat.id);
+          productsTitle.textContent = cat.name === 'الكل' ? 'كل المنتجات' : `منتجات ${cat.name}`;
+        });
+        categoryGrid.appendChild(card);
+      });
+    }
+
+    function createProductCard(product){
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="product-image"><img src="${product.img}" alt="${product.name}"></div>
+        <div class="product-details">
+          <h3 class="product-title">${product.name}</h3>
+          <p class="product-price">${product.price} MAD</p>
+          <p style="color:#f59e0b; font-size:1rem;">${getStars(product.id)}</p>
+          <ul>${getProductDescription(product.id).map(d=>`<li>${d}</li>`).join("")}</ul>
+          <p class="viewers" style="color:red; font-weight:bold;">يشاهده الآن 29</p>
+        </div>`;
+      card.addEventListener('click', () => { selectedProduct = product; orderModal.classList.add('show'); });
+      return card;
+    }
+
+    function displayProducts(filter = 'all') {
+      productsGrid.innerHTML = '';
+      const filtered = filter === 'all' ? db.products : db.products.filter(p => p.category === filter);
+      filtered.forEach(product => {
+        productsGrid.appendChild(createProductCard(product));
+      });
+    }
+
+    function displayTrending() {
+      trendingGrid.innerHTML = '';
+      const trending = db.products.slice(0,3);
+      trending.forEach(product => {
+        trendingGrid.appendChild(createProductCard(product));
+      });
+    }
+
+    plusBtn.addEventListener('click', ()=>{ quantity++; qtySpan.textContent = quantity; });
+    minusBtn.addEventListener('click', ()=>{ if(quantity>1){ quantity--; qtySpan.textContent = quantity; } });
+
+    function closeModal() { orderModal.classList.remove('show'); customerForm.reset(); quantity=1; qtySpan.textContent=1; }
+    closeModalBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', (e)=>{ if(e.target===orderModal) closeModal(); });
+
+    customerForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('full-name').value;
+      const phone = document.getElementById('phone').value;
+      const city = document.getElementById('city').value;
+      if(!name||!phone||!city) return alert("المرجو ملء جميع الحقول");
+
+      let orderMessage = `*طلب جديد من متجر HASSOU Sahara*\n\n🛒 *${selectedProduct.name}*\n💵 السعر: ${selectedProduct.price} MAD\n📦 الكمية: ${quantity}\n\n👤 الاسم: ${name}\n📱 الهاتف: ${phone}\n🏙️ المدينة: ${city}`;
+      const whatsappUrl = `https://wa.me/212607072825?text=${encodeURIComponent(orderMessage)}`;
+      window.open(whatsappUrl, '_blank');
+      closeModal();
+    });
+
+    function updateViewers(){
+      const elements = document.query
