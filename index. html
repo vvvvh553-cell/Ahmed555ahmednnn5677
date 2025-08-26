@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>متجر HASSOU Sahara</title>
+  <style>
+    body {font-family: Tahoma, Arial; margin:0; background:#f9f9f9; color:#333;}
+    header {background:#222; color:#fff; padding:15px; display:flex; align-items:center; justify-content:center;}
+    header img {height:50px; margin-left:10px;}
+    header h1 {margin:0; font-size:22px;}
+    .watching-now {background:#ff4444; color:#fff; padding:8px; text-align:center; font-size:14px;}
+    .products {display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:15px; padding:20px;}
+    .card {background:#fff; border-radius:12px; padding:15px; box-shadow:0 2px 6px rgba(0,0,0,0.1); position:relative;}
+    .card img {width:100%; border-radius:10px;}
+    .card h3 {margin:10px 0 5px;}
+    .price {color:#e60023; font-weight:bold;}
+    .old-price {text-decoration:line-through; color:#888; margin-left:5px;}
+    .stars {color:#FFD700; font-size:14px;}
+    .tags {margin-top:5px;}
+    .tag {display:inline-block; background:#eee; padding:3px 7px; border-radius:6px; font-size:12px; margin:2px;}
+    .actions {display:flex; justify-content:space-between; margin-top:10px;}
+    .actions button {background:#008CBA; border:none; color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer;}
+    .actions button:hover {background:#007399;}
+    .fav, .cart {cursor:pointer; font-size:18px; margin:0 5px;}
+    .share {margin-top:8px;}
+    .share button {background:#25d366; border:none; color:#fff; padding:5px 10px; border-radius:8px; cursor:pointer; margin-left:5px;}
+    .share .fb {background:#1877f2;}
+    .timer {margin-top:8px; font-size:14px; color:#d32f2f;}
+    .section-title {background:#eee; padding:10px 15px; font-weight:bold; margin-top:20px;}
+    #toast {visibility:hidden; min-width:250px; margin-left:-125px; background:#333; color:#fff; text-align:center; border-radius:8px; padding:10px; position:fixed; z-index:1; left:50%; bottom:30px; font-size:14px;}
+    #toast.show {visibility:visible; animation:fadein 0.5s, fadeout 0.5s 2.5s;}
+    @keyframes fadein {from{bottom:0; opacity:0;} to{bottom:30px; opacity:1;}}
+    @keyframes fadeout {from{bottom:30px; opacity:1;} to{bottom:0; opacity:0;}}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="IMG_20250826_014020.jpg" alt="شعار">
+    <h1>HASSOU Sahara</h1>
+  </header>
+
+  <!-- Watching Now -->
+  <div class="watching-now">
+    👁️ يشاهده الآن <span id="viewerCount">29</span> شخص
+  </div>
+
+  <!-- قسم تخفيضات اليوم -->
+  <div class="section-title">⚡ تخفيضات اليوم</div>
+  <div class="products">
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="خلاط">
+      <h3>خلاط كهربائي محمول</h3>
+      <div>
+        <span class="price">249 درهم</span>
+        <span class="old-price">399 درهم</span>
+      </div>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <ul>
+        <li>6 شفرات قوية</li>
+        <li>بطارية تدوم طويلاً</li>
+        <li>شحن USB سريع</li>
+        <li>سهل التنظيف</li>
+        <li>تصميم عصري</li>
+        <li>وزن خفيف</li>
+        <li>سعة 500ml</li>
+        <li>آمن ضد التسرب</li>
+        <li>ضمان سنة</li>
+        <li>متعدد الاستخدامات</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">🚚 شحن مجاني</span>
+        <span class="tag">💵 الدفع عند الاستلام</span>
+      </div>
+      <div class="timer" id="timer1">العرض ينتهي بعد: 02:15:34</div>
+      <div class="actions">
+        <span class="fav">❤️</span>
+        <span class="cart">🛒</span>
+        <button onclick="buyNow('خلاط كهربائي محمول')">اطلب الآن</button>
+      </div>
+      <div class="share">
+        <button onclick="shareWhatsApp('خلاط كهربائي محمول')">واتساب</button>
+        <button class="fb" onclick="shareFB('خلاط كهربائي محمول')">فيسبوك</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- قسم الأكثر مبيعاً -->
+  <div class="section-title">🔝 الأكثر مبيعاً</div>
+  <div class="products">
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="سماعات">
+      <h3>سماعات بلوتوث</h3>
+      <div class="price">149 درهم</div>
+      <div class="stars">⭐⭐⭐⭐✰</div>
+      <ul>
+        <li>صوت نقي</li>
+        <li>بطارية 20 ساعة</li>
+        <li>تصميم مريح</li>
+        <li>مايكروفون مدمج</li>
+        <li>ضد الماء</li>
+        <li>شحن سريع</li>
+        <li>مدى 10 متر</li>
+        <li>خفيفة الوزن</li>
+        <li>ضمان سنة</li>
+        <li>متوافقة مع كل الأجهزة</li>
+      </ul>
+      <div class="tags"><span class="tag">🚚 شحن مجاني</span></div>
+      <div class="actions">
+        <span class="fav">❤️</span>
+        <span class="cart">🛒</span>
+        <button onclick="buyNow('سماعات بلوتوث')">اطلب الآن</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="ساعة ذكية">
+      <h3>ساعة ذكية</h3>
+      <div class="price">199 درهم</div>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <ul>
+        <li>مراقبة الصحة</li>
+        <li>عداد خطوات</li>
+        <li>مقاومة للماء</li>
+        <li>بطارية 7 أيام</li>
+        <li>إشعارات واتساب</li>
+        <li>شاشة لمس</li>
+        <li>ربط بالهاتف</li>
+        <li>أوضاع رياضية</li>
+        <li>معدل ضربات القلب</li>
+        <li>تصميم أنيق</li>
+      </ul>
+      <div class="actions">
+        <span class="fav">❤️</span>
+        <span class="cart">🛒</span>
+        <button onclick="buyNow('ساعة ذكية')">اطلب الآن</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Message -->
+  <div id="toast">✅ تم إضافة المنتج لطلبك</div>
+
+<script>
+  // يشاهده الآن
+  function updateViewers() {
+    const viewers = Math.floor(Math.random() * (60 - 15 + 1)) + 15;
+    document.getElementById("viewerCount").innerText = viewers;
+  }
+  setInterval(updateViewers, 5000);
+
+  // عداد تخفيض (مثال بسيط)
+  function countdown(id, hours, minutes, seconds) {
+    let total = (hours*3600 + minutes*60 + seconds);
+    setInterval(function(){
+      if(total<=0) return;
+      total--;
+      let h = String(Math.floor(total/3600)).padStart(2,'0');
+      let m = String(Math.floor((total%3600)/60)).padStart(2,'0');
+      let s = String(total%60).padStart(2,'0');
+      document.getElementById(id).innerText = "العرض ينتهي بعد: "+h+":"+m+":"+s;
+    },1000);
+  }
+  countdown("timer1",2,15,34);
+
+  // Toast
+  function showToast() {
+    var x = document.getElementById("toast");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+
+  // شراء الآن
+  function buyNow(product){
+    showToast();
+    setTimeout(()=>{
+      window.location.href="https://wa.me/212600000000?text=أريد%20شراء%20"+encodeURIComponent(product);
+    },2000);
+  }
+
+  // مشاركة
+  function shareWhatsApp(product){
+    window.open("https://wa.me/?text="+encodeURIComponent("شاهد هذا المنتج: "+product));
+  }
+  function shareFB(product){
+    window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent("https://example.com/"+product));
+  }
+</script>
+</body>
+</html>
