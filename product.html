@@ -1,0 +1,53 @@
+<!-- product.html -->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منتجاتنا</title>
+  <style>
+    body {font-family: Arial, sans-serif; background: linear-gradient(135deg, #1976D2, #00796B); color: white; margin: 0; padding: 0;}
+    header {text-align: center; padding: 20px;}
+    nav a {color: white; margin: 0 10px; text-decoration: none; font-weight: bold;}
+    nav a:hover {text-decoration: underline;}
+    .products {display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 20px; padding: 20px;}
+    .card {background: rgba(255,255,255,0.1); padding: 15px; border-radius: 12px; text-align: center;}
+    .card img {width: 100%; border-radius: 10px;}
+    .btn {background: gold; color: black; padding: 8px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px;}
+    footer {background: rgba(0,0,0,0.2); text-align: center; padding: 15px;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛒 منتجاتنا</h1>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="product.html">المنتجات</a>
+      <a href="mailto:ahmedroor014@gmail.com">📧 راسلنا</a>
+      <a href="https://wa.me/212607072825">💬 واتساب</a>
+    </nav>
+  </header>
+
+  <section class="products">
+    <div class="card">
+      <img src="https://i.ibb.co/05nGFzZ/solar1.jpg" alt="لوح شمسي">
+      <h3>لوح شمسي 100W</h3>
+      <p>299 درهم</p>
+      <a href="https://wa.me/212607072825?text=اريد شراء لوح شمسي 100W" class="btn">اشتري الآن</a>
+    </div>
+
+    <div class="card">
+      <img src="https://i.ibb.co/Gvxh0nrG/solar2.jpg" alt="بطارية">
+      <h3>بطارية ليثيوم</h3>
+      <p>299 درهم</p>
+      <a href="https://wa.me/212607072825?text=اريد شراء بطارية ليثيوم" class="btn">اشتري الآن</a>
+    </div>
+
+    <!-- أضف باقي المنتجات بنفس الشكل -->
+  </section>
+
+  <footer>
+    <p>📍 المغرب | ☎️ 0607072825 | ✉️ ahmedroor014@gmail.com</p>
+  </footer>
+</body>
+</html>
