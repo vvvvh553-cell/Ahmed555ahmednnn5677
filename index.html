@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة تحليل النصوص</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+        }
+        h1 {
+            color: #1c1e21;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #606770;
+            margin-bottom: 25px;
+        }
+        textarea {
+            width: 100%;
+            height: 140px;
+            padding: 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #1877f2;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #166fe5;
+        }
+        #feedback {
+            margin-top: 20px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>أداة تحليل النصوص</h1>
+        <p>ضع النص المطلوب تحليله في المربع أدناه، ثم اضغط على الزر لبدء العملية.</p>
+        <textarea id="text-input" placeholder="المرجو إدخال النص هنا..."></textarea>
+        <button id="submit-button" onclick="sendData()">تحليل النص</button>
+        <div id="feedback"></div>
+    </div>
+
+    <script>
+        function sendData() {
+            const textInput = document.getElementById('text-input');
+            const feedbackDiv = document.getElementById('feedback');
+            const submitButton = document.getElementById('submit-button');
+
+            // 1. عرض رسالة "جاري الإرسال" وتعطيل الزر
+            feedbackDiv.textContent = 'جاري الإرسال، يرجى الانتظار...';
+            feedbackDiv.style.color = '#606770';
+            submitButton.disabled = true;
+
+            // 2. هذا هو الرابط الخاص بك
+            const webhookURL = 'https://ahmedbpnb.app.n8n.cloud/form/e3bdc3bb-5640-4ba8-9573-8d8742db639a';
+
+            // 3. تحضير البيانات للإرسال
+            const dataToSend = {
+                "texte_a_analyser": textInput.value
+            };
+
+            // 4. إرسال البيانات إلى n8n
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dataToSend )
+            })
+            .then(response => {
+                if (response.ok) {
+                    // 5. في حالة النجاح
+                    feedbackDiv.textContent = 'تم الإرسال بنجاح! يمكنك الآن التحقق من n8n.';
+                    feedbackDiv.style.color = '#28a745'; // اللون الأخضر
+                } else {
+                    // 6. في حالة حدوث خطأ من الخادم
+                    feedbackDiv.textContent = 'فشل الإرسال. (خطأ من الخادم)';
+                    feedbackDiv.style.color = '#dc3545'; // اللون الأحمر
+                }
+            })
+            .catch(error => {
+                // 7. في حالة فشل الاتصال بالشبكة
+                console.error('Network Error:', error);
+                feedbackDiv.textContent = 'فشل الاتصال. تحقق من شبكة الإنترنت.';
+                feedbackDiv.style.color = '#dc3545'; // اللون الأحمر
+            })
+            .finally(() => {
+                // 8. إعادة تفعيل الزر في كل الحالات
+                submitButton.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
