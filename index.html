@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة التحليل (إصدار جديد)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            color: #1c1e21;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 0.5rem;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            resize: vertical;
+        }
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #1877f2;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #9cb4d8;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        .status.success { color: #31a24c; }
+        .status.error { color: #fa383e; }
+        .status.info { color: #1877f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>أداة التحليل (إصدار جديد)</h1>
+        <textarea id="text-input" placeholder="الصق النص هنا..."></textarea>
+        <button id="submit-button" onclick="sendData()">تحليل النص</button>
+        <div id="status-message" class="status"></div>
+    </div>
+
+    <script>
+        // ==================================================
+        // !!! PASTE YOUR N8N PRODUCTION URL HERE !!!
+        // ==================================================
+        const N8N_WEBHOOK_URL = "https://ahmedbpnb.app.n8n.cloud/webhook/949d296d-c67e-4394-8fea-7744f5d06c58/chat";
+
+        const textInput = document.getElementById('text-input' );
+        const submitButton = document.getElementById('submit-button');
+        const statusMessage = document.getElementById('status-message');
+
+        function setStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = 'status ' + type;
+        }
+
+        async function sendData() {
+            const text = textInput.value;
+
+            if (!text.trim()) {
+                setStatus('خطأ: مربع النص فارغ.', 'error');
+                return;
+            }
+
+            setStatus('جارٍ الإرسال...', 'info');
+            submitButton.disabled = true;
+
+            try {
+                const response = await fetch(N8N_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "action": "sendMessage",
+                        "chatInput": text
+                    })
+                });
+
+                if (response.ok) {
+                    setStatus('نجح! تم إرسال البيانات بنجاح.', 'success');
+                } else {
+                    // This will show the exact error code, like 404 or 500
+                    setStatus(`فشل: الخادم أعاد الخطأ رقم ${response.status}`, 'error');
+                }
+
+            } catch (error) {
+                // This will catch network errors (like no internet)
+                setStatus('خطأ فادح في الشبكة. تأكد من اتصالك بالإنترنت.', 'error');
+                console.error('Fetch Error:', error);
+            } finally {
+                submitButton.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
